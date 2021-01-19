@@ -1,6 +1,15 @@
 <h1>Blogger</h1>
 
 <h2><%= @blogger.name %></h2>
-<h4><%= @blogger.age.to_s + " years old" %></h4><br/>
+<h4><%= @blogger.age.to_s + " years old" %></h4>
+<h4><%= @blogger.total_likes.to_s + " total likes" %></h4>
+<h4> Featured Post:  <%= @blogger.posts.blank? ? "This user has no posts!" : link_to(@blogger.featured_post.title, post_path(@blogger.featured_post)) %></h4>
+<strong> Top Five Destinations </strong><br>
+<ol>
+    <% @blogger.top_five.each do |destination|%>
+    <li> <%= link_to destination[0].name, destination_path(destination[0])%> </li>
+    <%end%>
+</ol>
+<hr/>
 <p><%= @blogger.bio %></p>
 
